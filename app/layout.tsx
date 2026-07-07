@@ -22,7 +22,8 @@ export default function RootLayout({
           replace={router.replace}
           onSessionChange={() => router.refresh()}
           social={{ providers: ["google"] }}
-          Link={Link}
+          redirectTo="/dashboard"
+          Link={Link} 
         >
           {children}
         </NeonAuthUIProvider>
