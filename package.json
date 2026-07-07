@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@neondatabase/auth-ui": "^0.2.1-beta",
+    "@neondatabase/neon-js": "^0.6.2-beta",
+    "better-auth": "^1.4.18",
+    "pg": "^8.22.0",
+    "react-router-dom": "^7.18.1"
+  },
+  "allowScripts": {
+    "core-js@3.49.0": true
+  }
+}

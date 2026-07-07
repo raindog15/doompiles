@@ -1,10 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <title>DoomPiles</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+  <!-- Load the Neon Auth/Clerk Script -->
+  <script 
+    async 
+    crossorigin="anonymous" 
+    data-clerk-publishable-key=env.VITE_NEON_AUTH_URL
+    src="https://cdn.clerk.io/clerk.js" 
+    type="text/javascript">
+  </script>    
 </head>
 <body>
     <h1>Welcome to DoomPiles</h1>
     <p>Nothing much to see yet.</p>
+    <div id="root"></div>
+    <!-- Load the Neon Auth/Clerk Script -->
+    <p>To use Neon Auth, please sign in with your Google account.</p>
+
+  <!-- This empty div is where Neon/Clerk will magically inject the UI -->
+  <div id="auth-links"></div>
+
+  <script>
+    // Wait for the window to load and the Clerk script to be ready
+    window.addEventListener('load', async () => {
+      try {
+        // Initialize the Clerk instance
+        await window.Clerk.load();
+
+        const authContainer = document.getElementById('auth-links');
+
+        // Check if the user is already logged in
+        if (window.Clerk.user) {
+          // If logged in, show a User Profile button (includes sign out)
+          window.Clerk.mountUserButton(authContainer);
+          console.log("Logged in user:", window.Clerk.user.emailAddresses[0].emailAddress);
+        } else {
+          // If not logged in, show the complete Sign In/Up interface
+          window.Clerk.mountSignIn(authContainer);
+        }
+      } catch (err) {
+        console.error("Neon Auth failed to load:", err);
+      }
+    });
+  </script>
 </body>
 </html>
