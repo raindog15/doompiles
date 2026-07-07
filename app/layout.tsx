@@ -1,33 +1,29 @@
+'use client';
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { NeonAuthUIProvider } from "@neondatabase/auth/react/ui";
+import { NeonAuthUIProvider } from "@neondatabase/auth-ui";
+import "@neondatabase/auth-ui/css";
 import { authClient } from "@/lib/auth/client";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "DoomPiles",
-  description: "Household inventory for the stuff that isn't organized",
-};
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en">
       <body>
-        <NeonAuthUIProvider authClient={authClient}>
+        <NeonAuthUIProvider
+          authClient={authClient}
+          navigate={router.push}
+          replace={router.replace}
+          onSessionChange={() => router.refresh()}
+          social={{ providers: ["google"] }}
+          Link={Link}
+        >
           {children}
         </NeonAuthUIProvider>
       </body>
