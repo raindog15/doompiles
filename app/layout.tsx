@@ -23,7 +23,6 @@ export default function RootLayout({
           onSessionChange={() => router.refresh()}
           social={{ providers: ["google"] }}
           redirectTo="/dashboard"
-          signOutUrl="/"
           Link={Link} 
         >
           {children}
