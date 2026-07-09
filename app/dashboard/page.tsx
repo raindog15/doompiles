@@ -1,10 +1,3 @@
-
-
-  
-
-
-
-
 'use client';
 
 import { useState } from "react";
@@ -14,13 +7,15 @@ import { auth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 
 export default async function Dashboard() {
-
+export const dynamic = 'force-dynamic';
+  
   // get the session info
   const { data: session } = await auth.getSession();
   // send back to root if no session
-//  if (!session) {
-//    redirect('/');
-//  }
+  if (!session?.user) {
+    return <div>Not authenticated</div>;
+   // redirect('/');
+  }
   
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
