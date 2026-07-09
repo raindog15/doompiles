@@ -6,8 +6,10 @@ import { useRouter } from "next/navigation";
 import { auth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 
-export default async function Dashboard() {
 export const dynamic = 'force-dynamic';
+
+export default async function Dashboard() {
+
   
   // get the session info
   const { data: session } = await auth.getSession();
