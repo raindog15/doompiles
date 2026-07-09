@@ -1,10 +1,27 @@
+
+
+  
+
+
+
+
 'use client';
 
 import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
+import { auth } from '@/lib/auth/server';
+import { redirect } from 'next/navigation';
 
-export default function Dashboard() {
+export default async function Dashboard() {
+
+  // get the session info
+  const { data: session } = await auth.getSession();
+  // send back to root if no session
+  if (!session) {
+    redirect('/');
+  }
+  
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -64,7 +81,8 @@ export default function Dashboard() {
 
       {/* Placeholder content */}
       <div style={{ padding: '40px 20px', color: '#555', fontFamily: 'Courier New, monospace', fontSize: '13px' }}>
-        nothing here yet.
+
+        welcome {session.user.name}
       </div>
 
     </main>
