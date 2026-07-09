@@ -18,9 +18,9 @@ export default async function Dashboard() {
   // get the session info
   const { data: session } = await auth.getSession();
   // send back to root if no session
-  if (!session) {
-    redirect('/');
-  }
+//  if (!session) {
+//    redirect('/');
+//  }
   
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
