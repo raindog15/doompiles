@@ -12,12 +12,12 @@ export default async function Dashboard() {
 
   
   // get the session info
-  const { data: session } = await auth.getSession();
+//  const { data: session } = await auth.getSession();
   // send back to root if no session
-  if (!session?.user) {
-    return <div>Not authenticated</div>;
+//  if (!session?.user) {
+//    return <div>Not authenticated</div>;
    // redirect('/');
-  }
+//  }
   
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
@@ -79,7 +79,7 @@ export default async function Dashboard() {
       {/* Placeholder content */}
       <div style={{ padding: '40px 20px', color: '#555', fontFamily: 'Courier New, monospace', fontSize: '13px' }}>
 
-        welcome {session.user.name}
+        Doom, doom, doom doom doom...
       </div>
 
     </main>
