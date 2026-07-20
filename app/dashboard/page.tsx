@@ -6,12 +6,14 @@ export const dynamic = 'force-dynamic';
 
 export default async function Dashboard() {
   const { data: session } = await auth.getSession();
+  
 console.log('session:', JSON.stringify(session));
 
   
   if (!session?.user) {
-    redirect('/');
+    return <h1>Not logged in</h1>;
+  } else {
+    return <DashboardClient user={session.user} />;
   }
-
-  return <DashboardClient user={session.user} />;
+  
 }
