@@ -16,6 +16,8 @@ export default async function Dashboard() {
     redirect('/');
   }
 
+  console.log('has db url:', !!process.env.DATABASE_URL);
+  
   const user = await getUser(session.user.id);
 
     return (
