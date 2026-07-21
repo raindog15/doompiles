@@ -11,15 +11,18 @@ export default async function Dashboard() {
   await cookies();  // these are load bearing. getSession will not work without them.
 
   const { data: session } = await auth.getSession();
+  console.log('post session check, session:', JSON.stringify(session));
 
   if (!session?.user) {
     redirect('/');
   }
 
   console.log('has db url:', !!process.env.DATABASE_URL);
-  
-  const user = await getUser(session.user.id);
 
+  console.log('pre getUser call');
+  const user = await getUser(session.user.id);
+  console.log('post getUser call');
+  
     return (
       <DashboardClient
         user={session.user}
