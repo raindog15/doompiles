@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import DashboardClient from './DashboardClient';
 import { cookies } from 'next/headers'; // these are load bearing 
+import { getUser } from '@/lib/db/users';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,12 @@ export default async function Dashboard() {
     redirect('/');
   }
 
-    return <DashboardClient user={session.user} />;
+  const user = await getUser(session.user.id);
 
+    return (
+      <DashboardClient
+        user={session.user}
+        needsHouseHold={!user?.household_id} 
+        />
+    );
 }

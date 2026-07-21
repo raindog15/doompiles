@@ -4,7 +4,13 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 
-export default function DashboardClient({ user }: { user: { name?: string | null, email?: string | null } }) {
+export default function DashboardClient({ 
+  user,
+  needsHouseHold
+ }: { 
+  user: { name?: string | null, email?: string | null }, 
+  needsHouseHold: boolean 
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
