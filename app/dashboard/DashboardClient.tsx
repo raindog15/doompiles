@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
+import styles from './dashboard.module.css';
 
 export default function DashboardClient({ user }: { user: { name?: string | null, email?: string | null } }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,17 +15,17 @@ export default function DashboardClient({ user }: { user: { name?: string | null
   }
 
   return (
-    <main style={{ minHeight: '100vh', background: '#1C1C1C', color: '#F0EBE0', fontFamily: 'Courier New, monospace' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '14px 20px', borderBottom: '1px solid #2a2a2a' }}>
+    <main className={styles.page}>
+      <div className={styles.topbar}>
         <input
           type="search"
           placeholder="Where is my stuff?"
-          style={{ flex: 1, background: '#222', border: '1px solid #2e2e2e', color: '#F0EBE0', fontFamily: 'Courier New, monospace', fontSize: '14px', padding: '10px 14px', outline: 'none' }}
+          className={styles.search}
         />
-        <div style={{ position: 'relative' }}>
+        <div className={styles.userMenu}>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: '#2a2a2a', border: '1px solid #3a3a3a', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            className={styles.userButton}
             aria-label="User menu"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -33,10 +34,10 @@ export default function DashboardClient({ user }: { user: { name?: string | null
             </svg>
           </button>
           {menuOpen && (
-            <div style={{ position: 'absolute', right: 0, top: '44px', background: '#222', border: '1px solid #2e2e2e', minWidth: '140px', zIndex: 50 }}>
+            <div className={styles.dropdown}>
               <button
                 onClick={handleSignOut}
-                style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', color: '#F0EBE0', fontFamily: 'Courier New, monospace', fontSize: '13px', textAlign: 'left', cursor: 'pointer' }}
+                className={styles.dropdownButton}
               >
                 sign out
               </button>
@@ -44,10 +45,19 @@ export default function DashboardClient({ user }: { user: { name?: string | null
           )}
         </div>
       </div>
-      <div style={{ padding: '40px 20px', color: '#555', fontFamily: 'Courier New, monospace', fontSize: '13px' }}>
+      <aside className={styles.sidebar}>
+        <div className={styles.sidebarItem}>Household</div>
+        <div className={styles.sidebarItem}>Inventory</div>
+        <div className={styles.sidebarItem}>Settings</div>
+      </aside>
+
+      <div className={styles.content}>
         Doom, doom, doom doom doom...
 
         Doom coming soon.
+      </div>
+        <div className={styles.bottomBar}>
+        <button className={styles.snap}>SNAP a doompile</button>
       </div>
     </main>
   );
