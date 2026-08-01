@@ -21,7 +21,6 @@ export default function DashboardClient({ user }: { user: { name?: string | null
         <div className={styles.sidebarItem}>Inventory</div>
         <div className={styles.sidebarItem}>Settings</div>
       </aside>
-      <section className={styles.rightPane}>
               <div className={styles.topbar}>
         <input
           type="search"
@@ -59,7 +58,6 @@ export default function DashboardClient({ user }: { user: { name?: string | null
         <div className={styles.bottomBar}>
         <button className={styles.snap}>SNAP a doompile</button>
       </div>
-        </section>      
     </main>
   );
 }
