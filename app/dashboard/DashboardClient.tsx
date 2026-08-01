@@ -21,7 +21,8 @@ export default function DashboardClient({ user }: { user: { name?: string | null
         <div className={styles.sidebarItem}>Inventory</div>
         <div className={styles.sidebarItem}>Settings</div>
       </aside>
-      <div className={styles.topbar}>
+      <section className={styles.rightPane}>
+              <div className={styles.topbar}>
         <input
           type="search"
           placeholder="Where is my stuff?"
@@ -50,7 +51,6 @@ export default function DashboardClient({ user }: { user: { name?: string | null
           )}
         </div>
       </div>
-
       <div className={styles.content}>
         Doom, doom, doom doom doom...
 
@@ -59,6 +59,7 @@ export default function DashboardClient({ user }: { user: { name?: string | null
         <div className={styles.bottomBar}>
         <button className={styles.snap}>SNAP a doompile</button>
       </div>
+        </section>      
     </main>
   );
 }
