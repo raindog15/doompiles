@@ -16,12 +16,14 @@ export default function DashboardClient({ user }: { user: { name?: string | null
 
   return (
     <main className={styles.page}>
+      
       <div className={styles.topbar}>
         <input
           type="search"
           placeholder="Where is my stuff?"
           className={styles.search}
         />
+        
         <div className={styles.userMenu}>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -45,12 +47,6 @@ export default function DashboardClient({ user }: { user: { name?: string | null
           )}
         </div>
       </div>
-
-      <aside className={styles.sidebar}>
-        <div className={styles.sidebarItem}>Household</div>
-        <div className={styles.sidebarItem}>Inventory</div>
-        <div className={styles.sidebarItem}>Settings</div>
-      </aside>
 
       <div className={styles.content}>
         Doom, doom, doom doom doom...
