@@ -16,12 +16,7 @@ export default function DashboardClient({ user }: { user: { name?: string | null
 
   return (
     <main className={styles.page}>
-        <aside className={styles.sidebar}>
-        <div className={styles.sidebarItem}>Household</div>
-        <div className={styles.sidebarItem}>Inventory</div>
-        <div className={styles.sidebarItem}>Settings</div>
-      </aside>
-              <div className={styles.topbar}>
+      <div className={styles.topbar}>
         <input
           type="search"
           placeholder="Where is my stuff?"
@@ -50,14 +45,22 @@ export default function DashboardClient({ user }: { user: { name?: string | null
           )}
         </div>
       </div>
+
+      <aside className={styles.sidebar}>
+        <div className={styles.sidebarItem}>Household</div>
+        <div className={styles.sidebarItem}>Inventory</div>
+        <div className={styles.sidebarItem}>Settings</div>
+      </aside>
+
       <div className={styles.content}>
         Doom, doom, doom doom doom...
 
         Doom coming soon.
       </div>
+
         <div className={styles.bottomBar}>
-        <button className={styles.snap}>SNAP a doompile</button>
-      </div>
+          <button className={styles.snap}>SNAP a doompile</button>
+        </div>
     </main>
   );
 }
