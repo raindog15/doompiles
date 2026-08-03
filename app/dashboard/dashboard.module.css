@@ -1,9 +1,11 @@
 .page {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: #1C1C1C;
   color: #F0EBE0;
 }
+
 
 .sidebar {
   width: clamp(180px, 20vw, 300px);
@@ -13,6 +15,7 @@
   flex-direction: column;
   font-family: 'Courier New', monospace;
 }
+
 
 .sidebarItem {
   padding: 12px 16px;
@@ -33,11 +36,9 @@
   gap: 12px;
   padding: 14px 20px;
   border-bottom: 1px solid #2a2a2a;
-  width: 100%;
 }
 
 .bottomBar {
-  width: 100%;
   background: #1C1C1C;
   border-top: 1px solid #2a2a2a;
   display: flex;
