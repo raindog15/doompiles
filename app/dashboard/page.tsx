@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import DashboardClient from './DashboardClient';
+import { getUser } from '@/lib/db/users';
 import { cookies } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
@@ -12,13 +13,22 @@ export default async function Dashboard() {
 
   const { data: session } = await auth.getSession();
 
-console.log('session:', JSON.stringify(session));
+  console.log('session:', JSON.stringify(session));
 
   
   if (!session?.user) {
     return <h1>Not logged in</h1>;
-  } else {
-    return <DashboardClient user={session.user} />;
   }
-  
+
+  let userData;
+  try {
+    userData = await getUser(session.user.id || '');
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    return <h1>Error fetching user data</h1>;
+  }
+
+  return <DashboardClient user={userData} />;
 }
+
+  

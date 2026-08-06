@@ -5,7 +5,14 @@ import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import styles from './dashboard.module.css';
 
-export default function DashboardClient({ user }: { user: { name?: string | null, email?: string | null } }) {
+export default function DashboardClient({ user }: { 
+    user: { 
+       user_id?: string, 
+       display_name?: string | null, 
+       email?: string | null, 
+       household_id?: string | null 
+      } 
+    }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -57,9 +64,12 @@ export default function DashboardClient({ user }: { user: { name?: string | null
       </aside>
       
       <div className={styles.content}>
-        Doom, doom, doom doom doom...
+        <p /> Welcome {user.display_name || user.email || 'User'}! This is your dashboard.
 
-        Doom coming soon.
+        <p /> Your household id is: {user.household_id || 'unknown'}
+        <p>Doom, doom, doom doom doom...
+
+        Doom coming soon.</p>
       </div>
 
         <div role="toolbar" className={styles.bottomBar}>
