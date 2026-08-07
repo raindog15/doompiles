@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
+import HouseholdModal from './HouseholdModal';
 import styles from './dashboard.module.css';
 
 export default function DashboardClient({ user }: { 
@@ -10,7 +11,9 @@ export default function DashboardClient({ user }: {
        user_id?: string, 
        display_name?: string | null, 
        email?: string | null, 
-       household_id?: string | null 
+       household_id?: string | null,
+       household_name?: string | null, 
+
       } 
     }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +24,10 @@ export default function DashboardClient({ user }: {
     router.push("/");
   }
 
+  const needsHousehold = !user.household_id;
+
   return (
+    
     <main className={styles.page}>
 
       <div role="toolbar" className={styles.topbar}>
@@ -66,7 +72,7 @@ export default function DashboardClient({ user }: {
       <div className={styles.content}>
         <p /> Welcome {user.display_name || user.email || 'User'}! This is your dashboard.
 
-        <p /> Your household id is: {user.household_id || 'unknown'}
+        <p /> Your household name is: {user.household_name || 'unknown'}
         <p>Doom, doom, doom doom doom...
 
         Doom coming soon.</p>
@@ -75,6 +81,7 @@ export default function DashboardClient({ user }: {
         <div role="toolbar" className={styles.bottomBar}>
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
+      {needsHousehold && <HouseholdModal />}  
     </main>
   );
 }

@@ -102,3 +102,131 @@
   font-family: 'Courier New', monospace;
   font-size: 13px;
 }
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.modalTitle {
+  font-family: 'Courier New', monospace;
+  font-size: 22px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.modalSub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.modalTabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.modalTab {
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.modalTabActive {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modalHint {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.modalInputRow {
+  display: flex;
+  gap: 8px;
+}
+
+.modalInput {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.modalInput:focus {
+  border-color: var(--accent);
+}
+
+.rerollBtn {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 18px;
+  width: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rerollBtn:hover {
+  border-color: var(--accent);
+}
+
+.modalError {
+  font-size: 12px;
+  color: var(--danger);
+}
+
+.modalPrimary {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 10px 16px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.modalPrimary:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.modalPrimary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

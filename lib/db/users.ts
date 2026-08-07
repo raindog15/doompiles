@@ -6,15 +6,16 @@ export async function getUser(authId: string) {
     console.log('getUser called with authId:', authId);
     const rows = await sql`
     select    
-        user_id,
-        auth_id,
-        display_name,
-        email,
-        email_validated,
-        household_id,
-        created_at
+        u.user_id,
+        u.auth_id,
+        u.display_name,
+        u.email,
+        u.email_validated,
+        u.household_id,
+        h.name as household_name,
+        u.created_at
     from 
-        public.users
+        public.users u join public.households h using (household_id)
     where 
         auth_id = ${authId}
     limit 1
