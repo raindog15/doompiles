@@ -31,7 +31,7 @@ CREATE TABLE locations (
   location_id        BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name               TEXT NOT NULL,
   parent_location_id BIGINT REFERENCES locations(location_id),
-  floor              INT,   -- 0 = ground, 1 = up, -1 = basement, NULL = n/a
+  floor              INT,   -- 1 = ground, 2 = up, -1 = basement, NULL = n/a
   category           location_category NOT NULL DEFAULT 'household',
   map_x              NUMERIC,  -- nullable until phase 2 map feature
   map_y              NUMERIC,
