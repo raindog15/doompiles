@@ -3,7 +3,7 @@ import { neon } from '@neondatabase/serverless';
 const sql = neon(process.env.DATABASE_URL as string);
 
 export async function getHousehold(householdId: string) {
-    console.log('getHousehold called with householdId', householdId;
+    console.log('getHousehold called with householdId', householdId);
     const rows = await sql`
     select    
         h.household_id,
