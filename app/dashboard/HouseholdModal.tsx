@@ -24,7 +24,7 @@ export default function HouseholdModal() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/households', {
+      const res = await fetch('/api/households/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name }),
