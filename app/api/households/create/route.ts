@@ -24,13 +24,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'household name required' }, { status: 400 });
   }
 
-  let householdData;
-  try {
-    householdData = await getHousehold(householdId);
-  }
-  catch (error) {
-    
-  }
+  try{
 
     const [household] = await sql`
       INSERT INTO households (name)
