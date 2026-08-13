@@ -2,6 +2,7 @@ import { neon } from '@neondatabase/serverless';
 import { auth } from '@/lib/auth/server';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+import { getHousehold } from '@/lib/db/household';
 
 const sql = neon(process.env.DATABASE_URL!);
 
