@@ -12,7 +12,7 @@ function generateHousehold() {
   category = 'household';
   floor = 1;
   name = 'Living Room'
-  return (category, floor, name);
+  return `${category}`;
 }
 
 export default function LocationsModal() {
