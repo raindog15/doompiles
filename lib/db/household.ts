@@ -12,7 +12,7 @@ export async function getHousehold(householdId: string) {
         public.households h using (household_id)
     where 
         h.household_id = ${householdId}
-        and h.deleted is false
+        and h.deleted is null
     limit 1
   `;
   console.log('getHousehold rows:', JSON.stringify(rows));
