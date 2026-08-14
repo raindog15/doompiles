@@ -4,8 +4,20 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './dashboard.module.css';
 
-export default function LocationsModal() {
+let category;
+let floor;
+let name;
 
+function generateHousehold() {
+  category = 'household';
+  floor = 1;
+  name = 'Living Room'
+  return (category, floor, name);
+}
+
+export default function LocationsModal() {
+  
+  useState(generateHousehold());
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
