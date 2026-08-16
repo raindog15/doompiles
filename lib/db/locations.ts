@@ -22,7 +22,7 @@ export async function getLocationsByHousehold(householdId: number) {
 export async function createLocation(
     name: string, 
     category: string, 
-    floor: number default 1, 
+    floor: number, 
     parent_location: number) {
   const rows = await sql`
     insert into locations
