@@ -18,3 +18,18 @@ export async function getLocationsByHousehold(householdId: number) {
   `;
   return rows;
 }
+
+export async function createLocation(
+    name: string, 
+    category: string, 
+    floor: number default 1, 
+    parent_location: number) {
+  const rows = await sql`
+    insert into locations
+      (name, category, floor, parent_location)
+    values
+      (${name}, ${category}, ${floor}, ${parent_location})
+      returning location_id, name, category, floor, parent_location
+      `;
+  return rows
+}
