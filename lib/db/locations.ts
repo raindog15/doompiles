@@ -23,7 +23,7 @@ export async function getLocationId(name: string, householdId: number){
   const rows = await sql`
     select
       location_id from locations
-    where household_id = ${household_id}
+    where household_id = ${householdId}
       and name = ${name}
     and deleted_at is null
     limit 1
