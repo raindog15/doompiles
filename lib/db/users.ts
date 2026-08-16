@@ -15,7 +15,8 @@ export async function getUser(authId: string) {
         h.name as household_name,
         u.created_at
     from 
-        public.users u join public.households h using (household_id)
+        public.users u 
+        left join public.households h using (household_id)
     where 
         auth_id = ${authId}
     limit 1
