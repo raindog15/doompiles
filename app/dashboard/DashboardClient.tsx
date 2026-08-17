@@ -4,6 +4,7 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import HouseholdModal from './HouseholdModal';
+import LocationsModal from './LocationsModal';
 import styles from './dashboard.module.css';
 
 export default function DashboardClient({ user }: { 
@@ -25,6 +26,8 @@ export default function DashboardClient({ user }: {
   }
 
   const needsHousehold = !user.household_id;
+  // get locations to set this
+  const needsHouseholdSetup = true;
 
   return (
     
@@ -81,7 +84,8 @@ export default function DashboardClient({ user }: {
         <div role="toolbar" className={styles.bottomBar}>
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
-      {needsHousehold && <HouseholdModal />}  
+      {needsHousehold && <HouseholdModal />} 
+      {needsHouseholdSetup && <LocationsModal />}
     </main>
   );
 }
