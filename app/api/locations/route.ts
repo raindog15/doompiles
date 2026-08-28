@@ -50,11 +50,11 @@ export async function POST(request: NextRequest) {
   try{
 
     const [location] = await createLocation(
-        ${name},
-        ${category},
-        ${floor},
-        ${parent_location_id},
-        ${household_id}
+        name,
+        category,
+        floor,
+        parent_location_id,
+        household_id
     );
 
     return NextResponse.json(location, { status: 201 });
