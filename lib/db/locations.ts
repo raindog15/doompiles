@@ -35,11 +35,11 @@ export async function createLocation(
     name: string, 
     category: string, 
     floor: number, 
-    parent_location: number,
+    parent_location_id: number,
     household_id: number) {
   const rows = await sql`
     insert into locations
-      (name, category, floor, parent_location, household_id)
+      (name, category, floor, parent_location_id, household_id)
     values
       (${name}, ${category}, ${floor}, ${parent_location}, ${household_id})
       returning location_id, name, category, floor, parent_location
