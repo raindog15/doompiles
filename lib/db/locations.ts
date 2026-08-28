@@ -41,7 +41,7 @@ export async function createLocation(
     insert into locations
       (name, category, floor, parent_location_id, household_id)
     values
-      (${name}, ${category}, ${floor}, ${parent_location}, ${household_id})
+      (${name}, ${category}, ${floor}, ${parent_location_id}, ${household_id})
       returning location_id, name, category, floor, parent_location
       `;
   return rows
