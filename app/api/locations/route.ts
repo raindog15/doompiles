@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getLocationsByHousehold,
          getLocationId,
          createLocation } from '@/lib/db/locations';
-import {}
 
 export async function GET(request: NextRequest) {
   await cookies();
