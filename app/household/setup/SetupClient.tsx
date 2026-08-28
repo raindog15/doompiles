@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../dashboard.module.css';
+import styles from '../../dashboard.module.css';
 
 const DEFAULT_ROOMS = [
   { name: 'Kitchen',      floor: 1, category: 'household' },
