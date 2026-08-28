@@ -7,9 +7,9 @@ export async function getHousehold(householdId: string) {
     const rows = await sql`
     select    
         h.household_id,
-        h.household_name
+        h.name
     from 
-        public.households h using (household_id)
+        public.households h
     where 
         h.household_id = ${householdId}
         and h.deleted_at is null
