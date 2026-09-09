@@ -89,7 +89,7 @@ export default function DashboardClient({ user }: {
         </div>
       {needsHousehold && <HouseholdModal />} 
       {locations.length < 1  && <SetupClient 
-                          householdId = user.household_id 
+                          householdId = {user.household_id} 
                           hasLocations = {locations.length > 0 } />}
     </main>
   );
