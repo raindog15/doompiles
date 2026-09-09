@@ -5,6 +5,7 @@ import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import HouseholdModal from './HouseholdModal';
 import LocationsModal from './LocationsModal';
+import getLocationsByHouseHold from '@/lib/db/locations'
 import SetupClient from '@/app/household/setup/SetupClient';
 import styles from './dashboard.module.css';
 
