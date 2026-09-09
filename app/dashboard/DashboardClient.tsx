@@ -26,11 +26,11 @@ export default function DashboardClient({ user }: {
     router.push("/");
   }
 
-  const needsHousehold = !user.household_id;
-  // get locations to set this
-  const locations = await getLocationsByHouseHold(user.household_id);
-  const hasLocations = {locations.length > 0};
-
+  async function checkHouseHold() {
+    const needsHousehold = !user.household_id;
+    const locations = await getLocationsByHouseHold(user.household_id);
+  const _hasLocations = {locations.length > 0};
+   }
   return (
     
     <main className={styles.page}>
@@ -89,7 +89,7 @@ export default function DashboardClient({ user }: {
       {needsHousehold && <HouseholdModal />} 
       {!hasLocations  && <SetupClient 
                           householdId = user.household_id 
-                          hasLocations = hasLocations />}
+                          hasLocations = _hasLocations />}
     </main>
   );
 }
