@@ -30,7 +30,7 @@ export default function DashboardClient({ user }: {
     const needsHousehold = !user.household_id;
     const locations = await getLocationsByHouseHold(user.household_id);
   const _hasLocations = {locations.length > 0};
-   }
+   };
   return (
     
     <main className={styles.page}>
