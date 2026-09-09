@@ -5,7 +5,7 @@ import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import HouseholdModal from './HouseholdModal';
 import LocationsModal from './LocationsModal';
-import SetupClient from '@/app/household/setup/SetupClient';
+import SetupPage from '@/app/household/setup';
 import styles from './dashboard.module.css';
 
 export default function DashboardClient({ user }: { 
@@ -86,7 +86,7 @@ export default function DashboardClient({ user }: {
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
       {needsHousehold && <HouseholdModal />} 
-      {needsHouseholdSetup && <SetupClient/>}
+      {needsHouseholdSetup && <SetupPage/>}
     </main>
   );
 }
