@@ -86,7 +86,6 @@ export default function DashboardClient({ user }: {
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
       {needsHousehold && <HouseholdModal />} 
-      {locations.length < 1  && router.push("/app/household/setup")
     </main>
   );
 }
