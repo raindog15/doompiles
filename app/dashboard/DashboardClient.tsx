@@ -29,8 +29,8 @@ export default function DashboardClient({ user }: {
   async function checkHouseHold() {
     const needsHousehold = !user.household_id;
     const locations = await getLocationsByHouseHold(user.household_id);
-  const _hasLocations = {locations.length > 0};
-   };
+  }
+  
   return (
     
     <main className={styles.page}>
@@ -87,9 +87,9 @@ export default function DashboardClient({ user }: {
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
       {needsHousehold && <HouseholdModal />} 
-      {!hasLocations  && <SetupClient 
+      {locations.length < 1  && <SetupClient 
                           householdId = user.household_id 
-                          hasLocations = _hasLocations />}
+                          hasLocations = {locations.length > 0 } />}
     </main>
   );
 }
