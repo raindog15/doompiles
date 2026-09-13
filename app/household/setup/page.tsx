@@ -20,7 +20,7 @@ export default async function SetupPage() {
   return (
     <SetupClient
       householdId={user.household_id}
-      hasLocations={locations.length > 0}
+      hasLocations={(locations.length > 0)}
     />
   );
 }
