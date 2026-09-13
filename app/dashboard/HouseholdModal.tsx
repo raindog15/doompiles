@@ -13,7 +13,7 @@ function generateName() {
   return `${pick(COLOURS)}-${pick(ADJECTIVES)}-${pick(NOUNS)}`;
 }
 
-export default function modalHousehold() {
+export default function HouseholdModal() {
   const [name, setName] = useState(generateName());
   const [view, setView] = useState<'create' | 'join'>('create');
   const [loading, setLoading] = useState(false);
