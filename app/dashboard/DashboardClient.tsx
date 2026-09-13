@@ -83,7 +83,7 @@ export default function DashboardClient({ user }: {
         <div role="toolbar" className={styles.bottomBar}>
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
-      {needsHousehold && <HouseholdModal />} 
+      {needsHousehold && <modalHousehold />} 
     </main>
   );
 }
