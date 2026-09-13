@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import HouseholdModal from './HouseholdModal';
 import LocationsModal from './LocationsModal';
 import styles from './dashboard.module.css';
+import { getLocationsByHousehold } from '@/lib/db/locations'
 
 export default function DashboardClient({ user }: { 
     user: { 
@@ -27,7 +28,7 @@ export default function DashboardClient({ user }: {
 
   async function checkHouseHold() {
     const needsHousehold = !user.household_id;
-    const locations = await getLocationsByHouseHold(user.household_id);
+    const locations = await getLocationsByHousehold(user.household_id);
   }
   
   return (
