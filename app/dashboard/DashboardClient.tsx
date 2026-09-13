@@ -28,6 +28,8 @@ export default function DashboardClient({ user }: {
 
   const needsHousehold = !user.household_id;
 
+  let locations;
+  
   async function handleSetupNeeded() {
     locations = await getLocationsByHousehold(user.household_id);
     if (locations.length < 1) {
