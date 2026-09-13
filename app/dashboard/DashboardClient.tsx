@@ -65,7 +65,7 @@ export default function DashboardClient({ user }: {
 
       <aside className={styles.sidebar}>
         <div className={styles.sidebarItem}>
-          <a href='/app/household'>Household</a>
+          <a href='/household'>Household</a>
         </div>
         <div className={styles.sidebarItem}>Inventory</div>
         <div className={styles.sidebarItem}>Settings</div>
