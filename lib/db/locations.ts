@@ -14,7 +14,7 @@ export async function getLocationsByHousehold(householdId: number) {
     FROM locations
     WHERE household_id = ${householdId}
     and deleted_at is null
-    ORDER BY category, floor, name
+    ORDER BY floor, category, name
   `;
   return rows;
 }
