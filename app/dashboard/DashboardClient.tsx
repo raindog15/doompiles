@@ -23,6 +23,8 @@ export default function DashboardClient({ user }: {
     await authClient.signOut();
     router.push("/");
   }
+
+  let needsHousehold true;
   
   return (
     
