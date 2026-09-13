@@ -24,7 +24,7 @@ export default function DashboardClient({ user }: {
     router.push("/");
   }
 
-  let needsHousehold = true;
+  const needsHousehold = !user.household_id;
   
   return (
     
