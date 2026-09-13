@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
-import modalHousehold from './modalHousehold';
+import HouseholdModal from './HouseholdModal';
 import styles from './dashboard.module.css';
 
 export default function DashboardClient({ user }: { 
@@ -83,7 +83,7 @@ export default function DashboardClient({ user }: {
         <div role="toolbar" className={styles.bottomBar}>
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
-      {needsHousehold && <modalHousehold />} 
+      {needsHousehold && <HouseholdModal />} 
     </main>
   );
 }
