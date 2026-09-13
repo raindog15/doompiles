@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
-import HouseholdModal from './HouseholdModal';
+import modalHousehold from './modalHousehold';
 import styles from './dashboard.module.css';
 
 export default function DashboardClient({ user }: { 
