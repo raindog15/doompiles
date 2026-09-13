@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { authClient } from "@/lib/auth/client";
+import { getLocationsByHousehold } from "@/lib/db/locations";
 import { useRouter } from "next/navigation";
-import HouseholdModal from './HouseholdModal';
-import styles from './dashboard.module.css';
-import Link from 'next/link';
+import HouseholdModal from "./HouseholdModal";
+import styles from "./dashboard.module.css";
+import Link from "next/link";
 
 export default function DashboardClient({ user }: { 
     user: { 
@@ -26,6 +27,13 @@ export default function DashboardClient({ user }: {
   }
 
   const needsHousehold = !user.household_id;
+
+  async function handleSetupNeeded() {
+    locations = await getLocationsByHousehold(user.household_id);
+    if (locations.length < 1) {
+      router.push("/household/setup");
+    }
+  }
   
   return (
     
