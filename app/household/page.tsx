@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getUser } from '@/lib/db/users';
 import { getLocationsByHousehold } from '@/lib/db/locations';
-import SetupClient from './SetupClient';
+import SetupClient from './setup/SetupClient';
 
 export const dynamic = 'force-dynamic';
 export default async function SetupPage() {
