@@ -5,6 +5,7 @@ import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import HouseholdModal from './HouseholdModal';
 import styles from './dashboard.module.css';
+import Link from 'next/link';
 
 export default function DashboardClient({ user }: { 
     user: { 
@@ -65,7 +66,7 @@ export default function DashboardClient({ user }: {
 
       <aside className={styles.sidebar}>
         <div className={styles.sidebarItem}>
-          <a href='/household'>Household</a>
+        <Link href="/household">household</Link>
         </div>
         <div className={styles.sidebarItem}>Inventory</div>
         <div className={styles.sidebarItem}>Settings</div>
