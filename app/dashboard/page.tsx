@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import DashboardClient from './DashboardClient';
 import { getUser } from '@/lib/db/users';
 import { cookies } from 'next/headers';
+import { getLocationsByHousehold } from '@/lib/db/locations';
 
 export const dynamic = 'force-dynamic';
 
@@ -28,7 +29,23 @@ export default async function Dashboard() {
     return <h1>Error fetching user data</h1>;
   }
 
-  return <DashboardClient user={userData} />;
-}
+  let householdLocations: Array<{
+    location_id: number;
+    name: string;
+    parent_location_id: number | null;
+    floor: number | null;
+  }>;
+  try {
+    householdLocations = (await getLocationsByHousehold(userData.household_id || '')) as Array<{
+      location_id: number;
+      name: string;
+      parent_location_id: number | null;
+      floor: number | null;
+    }>;
+  } catch (error) {
+    console.error("Error fetching household locations:", error);
+    return <h1>Error fetching household locations</h1>;
+  }
 
-  
+  return <DashboardClient user={{ ...userData, householdLocations }} />;
+}

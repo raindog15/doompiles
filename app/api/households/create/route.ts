@@ -2,7 +2,7 @@ import { neon } from '@neondatabase/serverless';
 import { auth } from '@/lib/auth/server';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { getHousehold } from '@/lib/db/household';
+import { createHousehold, getHousehold } from '@/lib/db/household';
 
 const sql = neon(process.env.DATABASE_URL!);
 
@@ -26,17 +26,7 @@ export async function POST(request: NextRequest) {
 
   try{
 
-    const [household] = await sql`
-      INSERT INTO households (name)
-      VALUES (${name.trim()})
-      RETURNING household_id, name
-      `;
-
-    await sql`
-      UPDATE users
-      SET household_id = ${household.household_id}
-      WHERE auth_id = ${session.user.id}
-      `;
+    const household = await createHousehold(name.trim(), session.user.id);
 
     return NextResponse.json(household, { status: 201 });
 

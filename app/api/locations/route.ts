@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const locations = await getLocationsByHousehold(Number(householdId));
+    const locations = await getLocationsByHousehold(householdId);
     return NextResponse.json(locations);
   } catch (error) {
     console.error('get locations error:', error);
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  const { name, category, floor, parent_location_id, household_id } = await request.json();
+  const { name, category, floor, parent_location_id, household_id, is_administrative } = await request.json();
 
   if (!household_id?.trim()) {
     return NextResponse.json({ error: 'household id required' }, { status: 400 });
@@ -54,7 +54,8 @@ export async function POST(request: NextRequest) {
         category,
         floor,
         parent_location_id,
-        household_id
+        household_id,
+        is_administrative
     );
 
     return NextResponse.json(location, { status: 201 });
