@@ -23,7 +23,7 @@ export async function getLocationsByHousehold(householdId: string, is_administra
     FROM locations
     WHERE household_id = ${validatedHouseholdId}
     and deleted_at is null
-    and is_administrative is ${is_administrative}
+    and is_administrative = ${is_administrative}
     ORDER BY floor, category, name
   `;
   return rows;
