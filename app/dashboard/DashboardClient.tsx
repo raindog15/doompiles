@@ -15,10 +15,10 @@ export default function DashboardClient({ user }: {
        household_id?: string | null,
        household_name?: string | null,
        householdLocations?: Array<{
-          location_id: number,
+          location_id: string,
           name: string,
-          parent_location_id: number | null,
-          floor: number | null,
+          parent_location_id: string | null,
+          floor: string | null,
       }>
     }
   }) {
