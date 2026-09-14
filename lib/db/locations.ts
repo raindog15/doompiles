@@ -45,17 +45,48 @@ export async function getLocationId(name: string, householdId: string){
 export async function createLocation(
     name: string, 
     category: string, 
-    floor: number, 
-    parent_location_id: number,
+    floor: string, 
+    parent_location_id: string,
     household_id: string,
     is_administrative: boolean = false) {
       
   const validatedHouseholdId = await testHouseHoldId(household_id);
+
+  let finalName = name;
+  if (parent_location_id) {
+    const parent = await sql `
+    select name from locations
+    where location_id = ${BigInt(parent_location_id)}
+    `;
+    if (parent[0]) {
+      finalName = `${parent[0].name} ${name} `
+    }
+  }
+  
+  // then check for duplicates on the composed name
+  const existing = await sql`
+    SELECT name FROM locations
+    WHERE household_id = ${household_id}
+    AND floor IS NOT DISTINCT FROM ${floor}
+    AND name ~ ${'^' + finalName + '( \\d+)?$'}
+    AND deleted_at IS NULL
+  `;
+
+  if (existing.length > 0) {
+    const numbers = existing.map((row: { name: string }) => {
+      const match = row.name.match(/(\d+)$/);
+      return match ? parseInt(match[1]) : 0;
+    });
+    const next = Math.max(...numbers) + 1;
+    finalName = `${finalName} ${next}`;
+  }
+
+  
   const rows = await sql`
     insert into locations
       (name, category, floor, parent_location_id, household_id, is_administrative)
     values
-      (${name}, ${category}, ${floor}, ${parent_location_id}, ${validatedHouseholdId}, ${is_administrative})
+      (${finalName}, ${category}, ${floor}, ${parent_location_id}, ${validatedHouseholdId}, ${is_administrative})
       returning location_id, name, category, floor, parent_location
       `;
   return rows
