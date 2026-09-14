@@ -73,7 +73,7 @@ export async function createLocation(
   `;
 
   if (existing.length > 0) {
-    const numbers = existing.map((row: { name: string }) => {
+    const numbers = existing.map((row: any) => {
       const match = row.name.match(/(\d+)$/);
       return match ? parseInt(match[1]) : 0;
     });
