@@ -32,24 +32,23 @@ export async function POST(request: NextRequest) {
       const res = await fetch('/api/locations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(${toCreate.household_id},_location.name
-                             
-                                     name,
-        category,
-        floor,
-        parent_location_id,
-        household_id,
-        is_administrative),
-      });
-
-      if (!res.ok) {
+        body: JSON.stringify(
+            toCreate.household_id,
+            _location.name,
+            _location.category,
+            _location.floor,
+            _location.parent_location_id,
+            _location.household_id,
+            _location.is_administrative)
+        )
+      }
+          if (!res.ok) {
         const data = await res.json();
         setError(data.error ?? 'something went wrong');
         return;
-      }
+          }
   }
     
-  return NextResponse.json({ message: 'not implemented' }, { status: 501 });
-
+  return NextResponse.json({ message: 'status from locations: ' }, { status: res.status });
   
 }
