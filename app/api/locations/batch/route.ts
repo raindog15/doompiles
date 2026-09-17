@@ -28,11 +28,18 @@ export async function POST(request: NextRequest) {
   // begin processing batch
   for _location in toCreate.toCreate {
 
-        try {
+    try {
       const res = await fetch('/api/locations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(${household_id},),
+        body: JSON.stringify(${toCreate.household_id},_location.name
+                             
+                                     name,
+        category,
+        floor,
+        parent_location_id,
+        household_id,
+        is_administrative),
       });
 
       if (!res.ok) {
