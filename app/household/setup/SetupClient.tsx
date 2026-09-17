@@ -10,8 +10,6 @@ const DEFAULT_ROOMS = [
   { name: 'Bathroom',     floor: 1, category: 'household' },
   { name: 'Bedroom',      floor: 1, category: 'household' },
   { name: 'Closet',       floor: 1, category: 'household' },
-  { name: 'Lost / Unknown',    floor: null, category: 'unknown' },
-  { name: 'Trash / Discarded', floor: null, category: 'unknown' },
   { name: 'Offsite',           floor: null, category: 'external' },
 ];
 
