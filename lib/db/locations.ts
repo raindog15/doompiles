@@ -87,7 +87,7 @@ export async function createLocation(
       (name, category, floor, parent_location_id, household_id, is_administrative)
     values
       (${finalName}, ${category}, ${floor}, ${parent_location_id}, ${validatedHouseholdId}, ${is_administrative})
-      returning location_id, name, category, floor, parent_location
+      returning location_id, name, category, floor, parent_location_id
       `;
   return rows
 }
