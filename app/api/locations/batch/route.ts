@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createLocation } from '@lib/db/locations'
 
 export async function GET() {
   return NextResponse.json({ message: 'not implemented' }, { status: 501 });
