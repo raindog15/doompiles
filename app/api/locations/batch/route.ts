@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server'
 import { POST } from '@api/locations'
 import { auth } from '@lib/auth/server'
 import { createLocation } from '@lib/db/locations'
@@ -19,29 +19,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  const { name } = await request.json();
+  const { toCreate } = await request.json();
 
   if (!toCreate.household_id?.trim()) {
     return NextResponse.json({ error: 'household_id required' }, { status: 400 });
   }
 
   // begin processing batch
-  for _location in toCreate.toCreate {
+  for ( let _location in toCreate.toCreate ) {
 
     try {
       const res = await fetch('/api/locations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(
-            toCreate.household_id,
-            _location.name,
-            _location.category,
-            _location.floor,
-            _location.parent_location_id,
-            _location.household_id,
-            _location.is_administrative)
-        )
-      }
+        body: JSON.stringify( toCreate.toCreate),
+      },
           if (!res.ok) {
         const data = await res.json();
         setError(data.error ?? 'something went wrong');
