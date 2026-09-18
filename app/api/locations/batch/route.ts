@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { POST } from '@api/locations'
-import { auth } from '@lib/auth/server'
 import { createLocation } from '@lib/db/locations'
 
 export async function GET() {
