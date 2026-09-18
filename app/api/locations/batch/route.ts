@@ -33,11 +33,11 @@ export async function POST(request: NextRequest) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({_location}),
-      },
+      });
+
+      return NextResponse.json({status: res.status });
+  } 
+    catch { return NextRequest.json(  { message: 'error posting batch'} )
+     }
   }
-    catch { return NextRequest.json({ message: 'error posting batch'})}
-    finally { 
-    
-  return NextResponse.json({ message: 'status from locations: ' }, { status: res.status });
-    }
 }
