@@ -19,28 +19,25 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  const { toCreate } = await request.json();
+  const { batchLocations } = await request.json();
 
-  if (!toCreate.household_id?.trim()) {
+  if (!batchLocations.household_id?.trim()) {
     return NextResponse.json({ error: 'household_id required' }, { status: 400 });
   }
 
   // begin processing batch
-  for ( let _location in toCreate.toCreate ) {
+  for ( let _location in batchLocations.toCreate ) {
 
     try {
       const res = await fetch('/api/locations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( toCreate.toCreate),
-      },
-          if (!res.ok) {
-        const data = await res.json();
-        setError(data.error ?? 'something went wrong');
-        return;
-          }
+        body: JSON.stringify({_location}),
+      }
   }
+    catch { return NextRequest.json({ message: 'error posting batch'})}
+    finally { 
     
   return NextResponse.json({ message: 'status from locations: ' }, { status: res.status });
-  
+    }
 }
