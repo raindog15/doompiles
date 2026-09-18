@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({_location}),
-      }
+      },
   }
     catch { return NextRequest.json({ message: 'error posting batch'})}
     finally { 
