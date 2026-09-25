@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({status: res.status });
   } 
-    catch { return NextRequest.json(  { message: 'error posting batch'} )
+    catch { return NextResponse.json(  { message: 'error posting batch'} )
      }
   }
 }
