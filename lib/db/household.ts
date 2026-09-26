@@ -2,7 +2,7 @@ import { neon } from '@neondatabase/serverless';
 
 const sql = neon(process.env.DATABASE_URL as string);
 
-export async function getHousehold(householdId: string) {
+export async function getHousehold(householdId: number) {
     console.log('getHousehold called with householdId', householdId);
     const rows = await sql`
     select    
@@ -19,7 +19,7 @@ export async function getHousehold(householdId: string) {
   return rows[0] ?? null;
 }
 
-export async function createHousehold(name: string, userId: string) {
+export async function createHousehold(name: string, userId: number) {
 
     // create the household and get the ID
     const rows = await sql`
