@@ -30,17 +30,17 @@ export default async function Dashboard() {
   }
 
   let householdLocations: Array<{
-    location_id: string;
+    location_id: number;
     name: string;
-    parent_location_id: string | null;
-    floor: string | null;
+    parent_location_id: number | null;
+    floor: number | null;
   }>;
   try {
     householdLocations = (await getLocationsByHousehold(userData.household_id || '')) as Array<{
-      location_id: string;
+      location_id: number;
       name: string;
-      parent_location_id: string | null;
-      floor: string | null;
+      parent_location_id: number | null;
+      floor: number | null;
     }>;
   } catch (error) {
     console.error("Error fetching household locations:", error);
