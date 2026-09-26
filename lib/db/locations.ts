@@ -10,7 +10,7 @@ async function testHouseHoldId(rawHouseholdId: unknown) {
   return BigInt(householdId);
 }
 
-export async function getLocationsByHousehold(householdId: string, is_administrative: boolean = false) {
+export async function getLocationsByHousehold(householdId: number, is_administrative: boolean = false) {
   const validatedHouseholdId = await testHouseHoldId(householdId);
   const rows = await sql`
     SELECT
@@ -29,7 +29,7 @@ export async function getLocationsByHousehold(householdId: string, is_administra
   return rows;
 }
 
-export async function getLocationId(name: string, householdId: string){
+export async function getLocationId(name: string, householdId: number){
   const validatedHouseholdId = await testHouseHoldId(householdId);
   const rows = await sql`
     select
@@ -45,9 +45,9 @@ export async function getLocationId(name: string, householdId: string){
 export async function createLocation(
     name: string, 
     category: string, 
-    floor: string, 
-    parent_location_id: string,
-    household_id: string,
+    floor: number, 
+    parent_location_id: number | null,
+    household_id: number,
     is_administrative: boolean = false) {
       
   const validatedHouseholdId = await testHouseHoldId(household_id);
