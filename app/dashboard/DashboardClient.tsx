@@ -9,16 +9,16 @@ import Link from "next/link";
 
 export default function DashboardClient({ user }: { 
     user: { 
-       user_id?: string,
+       user_id?: number,
        display_name?: string | null,
        email?: string | null,
-       household_id?: string | null,
+       household_id?: number | null,
        household_name?: string | null,
        householdLocations?: Array<{
-          location_id: string,
+          location_id: number,
           name: string,
-          parent_location_id: string | null,
-          floor: string | null,
+          parent_location_id: number | null,
+          floor: number | null,
       }>
     }
   }) {
