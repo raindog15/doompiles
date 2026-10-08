@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  userData = await getUser(session.user.id);
+  const userData = await getUser(session.user.id);
 
   if (!userData.household_id) {
     return NextResponse.json({ error: 'user is missing household_id' }, { status: 500 });
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  userData = await getUser(session.user.id);
+  const userData = await getUser(session.user.id);
 
   if (!userData.household_id) {
     return NextResponse.json({ error: 'user is missing household_id' }, { status: 500 });
