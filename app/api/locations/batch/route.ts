@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
   }
 
   const { batchLocations } = await request.json();
-
+  console.log(json.stringify(batchLocations));
+  
   // begin processing batch
   for ( let _location in batchLocations.toCreate ) {
 
