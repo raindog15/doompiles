@@ -20,10 +20,6 @@ export async function POST(request: NextRequest) {
 
   const { batchLocations } = await request.json();
 
-  if (!batchLocations.household_id?.trim()) {
-    return NextResponse.json({ error: 'household_id required' }, { status: 400 });
-  }
-
   // begin processing batch
   for ( let _location in batchLocations.toCreate ) {
 
