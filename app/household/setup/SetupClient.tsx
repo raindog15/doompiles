@@ -47,6 +47,8 @@ export default function SetupClient({
       ...rooms,
       ...(includeCar ? [{ name: 'Car', floor: null, category: 'vehicle' }] : []),
     ];
+
+    console.log(JSON.stringify(toCreate));
     
     try {
       const res = await fetch('/api/locations/batch', {
