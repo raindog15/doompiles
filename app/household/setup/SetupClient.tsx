@@ -48,6 +48,8 @@ export default function SetupClient({
       ...(includeCar ? [{ name: 'Car', floor: null, category: 'vehicle' }] : []),
     ];
 
+    console.log('householdId before fetch:', householdId, typeof householdId);
+    
     try {
       const res = await fetch('/api/locations/batch', {
         method: 'POST',
