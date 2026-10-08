@@ -43,6 +43,8 @@ export default function SetupClient({
     setLoading(true);
     setError(null);
 
+    console.log(JSON.stringify(...rooms))
+
     const toCreate = [
       ...rooms,
       ...(includeCar ? [{ name: 'Car', floor: null, category: 'vehicle' }] : []),
