@@ -1,27 +1,27 @@
-import { neon } from '@neondatabase/serverless';
-import { auth } from '@/lib/auth/server';
-import { cookies } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
+import { neon } from '@neondatabase/serverless'
+import { auth } from '@/lib/auth/server'
+import { getUser } from '@/lib/db/users'
+import { cookies } from 'next/headers'
+import { NextRequest, NextResponse } from 'next/server'
 import { getLocationsByHousehold,
          getLocationId,
-         createLocation } from '@/lib/db/locations';
+         createLocation } from '@/lib/db/locations'
 
 export async function GET(request: NextRequest) {
   await cookies();
   const { data: session } = await auth.getSession();
-
   if (!session?.user) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  const householdId = request.nextUrl.searchParams.get('household_id');
+  userData = await getUser(session.user.id);
 
-  if (!householdId) {
-    return NextResponse.json({ error: 'household_id required' }, { status: 400 });
+  if (!userData.household_id) {
+    return NextResponse.json({ error: 'user is missing household_id' }, { status: 500 });
   }
 
   try {
-    const locations = await getLocationsByHousehold(householdId);
+    const locations = await getLocationsByHousehold(userData.household_idd);
     return NextResponse.json(locations);
   } catch (error) {
     console.error('get locations error:', error);
@@ -41,11 +41,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
-  const { name, category, floor, parent_location_id, household_id, is_administrative } = await request.json();
+  userData = await getUser(session.user.id);
 
-  if (!household_id?.trim()) {
-    return NextResponse.json({ error: 'household id required' }, { status: 400 });
+  if (!userData.household_id) {
+    return NextResponse.json({ error: 'user is missing household_id' }, { status: 500 });
   }
+  
+  const { name, category, floor, parent_location_id, is_administrative } = await request.json();
 
   try{
 
@@ -54,7 +56,7 @@ export async function POST(request: NextRequest) {
         category,
         floor,
         parent_location_id,
-        household_id,
+        userData.household_id,
         is_administrative
     );
 
