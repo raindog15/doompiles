@@ -43,7 +43,7 @@ export default function SetupClient({
     setLoading(true);
     setError(null);
 
-    console.log(JSON.stringify(...rooms))
+    console.log(JSON.stringify(rooms[0]))
 
     const toCreate = [
       ...rooms,
