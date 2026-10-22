@@ -45,7 +45,7 @@ export async function getLocationId(name: string, householdId: number){
 export async function createLocation(
     name: string, 
     category: string, 
-    floor: number, 
+    floor: number | null, 
     parent_location_id: number | null,
     household_id: number,
     is_administrative: boolean = false) {
