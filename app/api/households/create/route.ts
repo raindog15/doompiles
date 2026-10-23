@@ -1,8 +1,9 @@
-import { neon } from '@neondatabase/serverless';
-import { auth } from '@/lib/auth/server';
-import { cookies } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
-import { getHousehold } from '@/lib/db/household';
+import { neon } from '@neondatabase/serverless'
+import { auth } from '@/lib/auth/server'
+import { getUser } from '@/lib/db/users'
+import { cookies } from 'next/headers'
+import { NextRequest, NextResponse } from 'next/server'
+import { createHousehold, getHousehold } from '@/lib/db/household'
 
 const sql = neon(process.env.DATABASE_URL!);
 
@@ -24,19 +25,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'household name required' }, { status: 400 });
   }
 
+  const { userId } = await getUser(session.user.id);
+
   try{
 
-    const [household] = await sql`
-      INSERT INTO households (name)
-      VALUES (${name.trim()})
-      RETURNING household_id, name
-      `;
-
-    await sql`
-      UPDATE users
-      SET household_id = ${household.household_id}
-      WHERE auth_id = ${session.user.id}
-      `;
+    const household = await createHousehold(name.trim(), userId );
 
     return NextResponse.json(household, { status: 201 });
 

@@ -1,22 +1,27 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
-import HouseholdModal from './HouseholdModal';
-import LocationsModal from './LocationsModal';
-import styles from './dashboard.module.css';
+import HouseholdModal from "./HouseholdModal";
+import styles from "./dashboard.module.css";
+import Link from "next/link";
 
 export default function DashboardClient({ user }: { 
     user: { 
-       user_id?: string, 
-       display_name?: string | null, 
-       email?: string | null, 
-       household_id?: string | null,
-       household_name?: string | null, 
-
-      } 
-    }) {
+       user_id?: number,
+       display_name?: string | null,
+       email?: string | null,
+       household_id?: number | null,
+       household_name?: string | null,
+       householdLocations?: Array<{
+          location_id: number,
+          name: string,
+          parent_location_id: number | null,
+          floor: number | null,
+      }>
+    }
+  }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -25,11 +30,15 @@ export default function DashboardClient({ user }: {
     router.push("/");
   }
 
-  async function checkHouseHold() {
-    const needsHousehold = !user.household_id;
-    const locations = await getLocationsByHouseHold(user.household_id);
-  }
-  
+  const needsHousehold = !user.household_id;
+
+  useEffect(() => {
+    // go to household setup if a household exists but is empty
+    if (user.household_id && user.householdLocations && user.householdLocations.length < 1) {
+      router.push("/household/setup");
+    }
+  }, [user.householdLocations, router, user.household_id]);
+
   return (
     
     <main className={styles.page}>
@@ -68,24 +77,27 @@ export default function DashboardClient({ user }: {
       </div>
 
       <aside className={styles.sidebar}>
-        <div className={styles.sidebarItem}>Household</div>
+        <div className={styles.sidebarItem}>
+        <Link href="/household">household</Link>
+        </div>
         <div className={styles.sidebarItem}>Inventory</div>
         <div className={styles.sidebarItem}>Settings</div>
       </aside>
       
       <div className={styles.content}>
-        <p /> Welcome {user.display_name || user.email || 'User'}! This is your dashboard.
+        <p>Welcome {user.display_name || user.email || 'User'}! This is your dashboard.</p>
 
-        <p /> Your household name is: {user.household_name || 'unknown'}
-        <p>Doom, doom, doom doom doom...
-
-        Doom coming soon.</p>
+        <p>Your household name is: {user.household_name || 'unknown'}</p>
+        <p>Doom, doom, doom doom doom... Doom coming soon.</p>
       </div>
 
         <div role="toolbar" className={styles.bottomBar}>
           <button className={styles.snap}>SNAP a doompile</button>
         </div>
-      {needsHousehold && <HouseholdModal />} 
+        
+      {//create a household if needed
+        needsHousehold && <HouseholdModal />
+      }
     </main>
   );
 }

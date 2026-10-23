@@ -10,8 +10,6 @@ const DEFAULT_ROOMS = [
   { name: 'Bathroom',     floor: 1, category: 'household' },
   { name: 'Bedroom',      floor: 1, category: 'household' },
   { name: 'Closet',       floor: 1, category: 'household' },
-  { name: 'Lost / Unknown',    floor: null, category: 'unknown' },
-  { name: 'Trash / Discarded', floor: null, category: 'unknown' },
   { name: 'Offsite',           floor: null, category: 'external' },
 ];
 
@@ -45,17 +43,20 @@ export default function SetupClient({
     setLoading(true);
     setError(null);
 
+    console.log(JSON.stringify(rooms[0]))
+
     const toCreate = [
       ...rooms,
       ...(includeCar ? [{ name: 'Car', floor: null, category: 'vehicle' }] : []),
     ];
 
+    console.log(JSON.stringify(toCreate));
+    
     try {
       const res = await fetch('/api/locations/batch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          household_id: householdId,
           locations: toCreate,
         }),
       });

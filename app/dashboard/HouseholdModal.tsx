@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './dashboard.module.css';
 
-const COLOURS = ['yellow', 'amber', 'silver', 'crimson', 'indigo', 'tawny', 'jade', 'ashen', 'copper', 'violet', 'russet'];
+const COLOURS = ['yellow', 'amber', 'silver', 'crimson', 'indigo', 'tawny', 'jade', 'ashen', 'copper', 'violet', 'russet', 'bright'];
 const ADJECTIVES = ['autumn', 'winter', 'summer', 'spring', 'bright', 'sunny', 'peaceful', 'solemn', 'quiet', 'dusty', 'sleepy', 'hollow', 'mossy', 'creaky', 'misty', 'sturdy', 'murky', 'fuzzy', 'bold'];
 const NOUNS = ['leaves', 'tree', 'mask', 'badger', 'kettle', 'cauldron', 'lantern', 'hammer', 'raven', 'thistle', 'ferret', 'acorn', 'hamster', 'hedgehog'];
 
