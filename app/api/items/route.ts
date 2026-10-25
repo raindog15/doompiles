@@ -19,7 +19,15 @@ export async function GET(request: NextRequest){
 
   const userData = await getUser(session.user.id);
   
-  const res = NextResponse;
-  
-  return res;
+  if (!userData.household_id) {
+    return NextResponse.json({ error: 'user is missing household_id' }, { status: 500 });
+  }
+
+  try {
+    const items = await getItems(userData.household_id);
+    return NextResponse.json(items);
+  } catch (error) {
+    console.error('get items error:', error);
+    return NextResponse.json({ error: 'failed to fetch items' }, { status: 500 });
+  }
 }
