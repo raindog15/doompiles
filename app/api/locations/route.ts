@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const locations = await getLocationsByHousehold(userData.household_idd);
+    const locations = await getLocationsByHousehold(userData.household_id);
     return NextResponse.json(locations);
   } catch (error) {
     console.error('get locations error:', error);
