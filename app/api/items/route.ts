@@ -2,7 +2,7 @@ import { neon } from '@neondatabase/serverless';
 import { auth } from '@/lib/auth/server';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { getItems } from '@/lib/db/items';
+import { getItems } from '@/lib/db/inventory';
 import { getUser } from '@/lib/db/users';
 
 export async function POST(request: NextRequest) {
