@@ -2,7 +2,7 @@ import { auth } from '@/lib/auth/server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getUser } from '@/lib/db/users';
-import { ManageInventory } from '../ManageInventory';
+import { ManageInventory } from './ManageInventory';
 
 export const dynamic = 'force-dynamic';
 
