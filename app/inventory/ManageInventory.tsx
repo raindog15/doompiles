@@ -8,9 +8,9 @@ export default function ManageInventory(){
  
   async function getItems()
   try {
-    const res = await fetch ('/api/inventory/items', {
+    const res = await fetch ('/api/items', {
                 method: 'GET',
-                headers: { Content-type: 'application/json' },
+                headers: { 'Content-Type': 'application/json' },
     } );
       if (!res.ok) {
         const data = await res.json();
