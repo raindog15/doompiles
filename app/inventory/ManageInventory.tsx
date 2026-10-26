@@ -6,7 +6,7 @@ import styles from '@/app/dashboard/dashboard.module.css';
 
 export default function ManageInventory(){
  
-  async function getItems()
+  async function getItems() {
   try {
     const res = await fetch ('/api/items', {
                 method: 'GET',
@@ -17,6 +17,7 @@ export default function ManageInventory(){
         setError(data.error ?? 'something went wrong');
         return;
       }    
+  }
     router.refresh();
     
   }
