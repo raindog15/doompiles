@@ -17,7 +17,7 @@ export default function ManageInventory(){
         setError(data.error ?? 'something went wrong');
         return;
       }    
-  }
+  };
     router.refresh();
     
   }
