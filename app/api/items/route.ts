@@ -7,7 +7,7 @@ import { getUser } from '@/lib/db/users';
 
 export async function POST(request: NextRequest) {
 
-  return NextResponse(405, 'POST not implemented');
+  return NextResponse.json({ error: 'POST not implemented'},{ status: 501 });
 };
 
 export async function GET(request: NextRequest){
