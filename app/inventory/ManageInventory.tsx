@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/app/dashboard/dashboard.module.css';
 
-export default function ManageInventory(){
+export default function ManageInventory(
+    householdId number
+                                    ){
  
 //  async function getItems() {
 //  try {
