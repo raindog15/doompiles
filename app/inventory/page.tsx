@@ -2,7 +2,7 @@ import { auth } from '@/lib/auth/server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getUser } from '@/lib/db/users';
-import { ManageInventory } from './ManageInventory';
+import ManageInventory from './ManageInventory';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +15,7 @@ export default async function InventoryPage() {
   if (!user?.household_id) redirect('/dashboard'); // no household yet, go back
   return (
     <ManageInventory
-      householdId={user.household_id}
+      (householdId={user.household_id})
     />
   );
 }
