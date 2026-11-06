@@ -15,7 +15,7 @@ export default async function InventoryPage() {
   if (!user?.household_id) redirect('/dashboard'); // no household yet, go back
   return (
     <ManageInventory
-      (householdId={user.household_id})
+      householdId={user.household_id}
     />
   );
 }
