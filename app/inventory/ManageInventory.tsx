@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import styles from '@/app/dashboard/dashboard.module.css';
 
 export default function ManageInventory({
-  householdId: number
-}
-)
-{
+  householdId,
+}: {
+  householdId: number;
+}) {              
 //  async function getItems() {
 //  try {
 //    const res = await fetch ('/api/items', {
