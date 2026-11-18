@@ -30,3 +30,15 @@ export async function searchItems(householdId: number, q: string) {
 
   return rows;
 }
+
+export async function createItem(householdId: number, itemName: string, locationId: number, parentItem: number | null ) {
+
+  const rows = await sql `
+  insert into items
+  (name, location_id, parent_item_id, household_id)
+  values
+  (${itemName},${locationId},${householdId})
+  returning item_id, name, location_id, parent_item_id, household_id
+  `;
+  return rows;
+}
