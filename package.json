@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "test:ci": "vitest run",
+    "build:preview": "vitest run && next build",
     "start": "next start",
     "lint": "eslint"
   },
