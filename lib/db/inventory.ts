@@ -37,7 +37,7 @@ export async function createItem(householdId: number, itemName: string, location
   insert into items
   (name, location_id, parent_item_id, household_id)
   values
-  (${itemName},${locationId},${householdId})
+  (${itemName},${locationId},${parentItem},${householdId})
   returning item_id, name, location_id, parent_item_id, household_id
   `;
   return rows;
